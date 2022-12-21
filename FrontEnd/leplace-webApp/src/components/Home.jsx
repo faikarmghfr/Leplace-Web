@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <section className="flex gap-6">
       <div
-        className={`bg-[#357960] min-h-screen ${
+        className={`bg-[#00664F] min-h-screen ${
           open ? "w-72" : "w-16"
         } duration-500 text-gray-100 px-4`}
       >

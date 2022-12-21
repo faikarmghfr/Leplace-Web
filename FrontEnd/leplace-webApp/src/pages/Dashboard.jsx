@@ -1,6 +1,8 @@
 import React from "react";
 import Home from "../components/Home";
 import Header from "../components/Header";
+import { FaRegCheckCircle, FaBookOpen, FaChartBar } from "react-icons/fa";
+import { BsCashStack } from "react-icons/bs";
 
 const Dashboard = () => {
   return (
@@ -11,40 +13,42 @@ const Dashboard = () => {
           <Header name="Dashboard" />
           <div className="flex flex-col pl-10 pr-10 pt-10 w-auto">
             <div class="grid grid-cols-4 gap-4 mb-7">
-              <div className="card w-auto bg-primary text-primary-content">
+              <div className="card w-auto bg-[#E93B81] text-primary-content">
                 <div className="card-body">
-                  <h2 className="card-title">Card title!</h2>
-                  <p>If a dog chews shoes whose shoes does he choose?</p>
-                  <div className="card-actions justify-end">
-                    <button className="btn">Buy Now</button>
+                  <div className="flex align-middle">
+                    <FaRegCheckCircle size={25} />
+                    <h2 className="card-title ml-5">Kehadiran</h2>
                   </div>
+                  <p>Persentase kehadiran anda saat ini 90%</p>
                 </div>
               </div>
-              <div className="card w-auto bg-primary text-primary-content">
+              <div className="card w-auto bg-[#FFC764] text-primary-content">
                 <div className="card-body">
-                  <h2 className="card-title">Card title!</h2>
-                  <p>If a dog chews shoes whose shoes does he choose?</p>
-                  <div className="card-actions justify-end">
-                    <button className="btn">Buy Now</button>
+                  <div className="flex">
+                    <FaBookOpen size={25} />
+                    <h2 className="card-title ml-5">Mata Kuliah</h2>
                   </div>
+                  <p>
+                    Untuk semester sekarang, anda mendapat sebanyak 8 mata kuliah
+                  </p>
                 </div>
               </div>
-              <div className="card w-auto bg-primary text-primary-content">
+              <div className="card w-auto bg-[#7868E6] text-primary-content">
                 <div className="card-body">
-                  <h2 className="card-title">Card title!</h2>
-                  <p>If a dog chews shoes whose shoes does he choose?</p>
-                  <div className="card-actions justify-end">
-                    <button className="btn">Buy Now</button>
+                  <div className="flex">
+                    <BsCashStack size={25} />
+                    <h2 className="card-title ml-5">UKT</h2>
                   </div>
+                  <p>UKT semester 5 telah dilunasi</p>
                 </div>
               </div>
-              <div className="card w-auto bg-primary text-primary-content">
+              <div className="card w-auto bg-[#BC658D] text-primary-content">
                 <div className="card-body">
-                  <h2 className="card-title">Card title!</h2>
-                  <p>If a dog chews shoes whose shoes does he choose?</p>
-                  <div className="card-actions justify-end">
-                    <button className="btn">Buy Now</button>
+                  <div className="flex">
+                    <FaChartBar size={25} />
+                    <h2 className="card-title ml-5">IP</h2>
                   </div>
+                  <p>IP semester 5 anda mendapat 3.15</p>
                 </div>
               </div>
             </div>

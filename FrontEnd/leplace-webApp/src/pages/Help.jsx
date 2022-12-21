@@ -9,7 +9,6 @@ const Help = () => {
         <Home />
         <div className="flex flex-col w-screen">
           <Header name="Help" />
-          <h1>INI HELP</h1>
         </div>
       </div>
     </>

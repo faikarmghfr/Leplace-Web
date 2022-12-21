@@ -4,7 +4,7 @@ const Header = (props) => {
   return (
     <>
       <div className="pl-10 pr-10 pt-7">
-        <nav class=" border-gray-200 px-2 md:px-7 rounded-xl py-2.5  bg-[#357960] w-12/12 h-max">
+        <nav class=" border-gray-200 shadow-xl px-2 md:px-7 rounded-xl py-2.5  bg-[#00664F] w-12/12 h-max">
           <div class="container flex flex-wrap items-center justify-between mx-auto">
             <div className="text-white">{props.name}</div>
             <div class="flex items-center md:order-2">
