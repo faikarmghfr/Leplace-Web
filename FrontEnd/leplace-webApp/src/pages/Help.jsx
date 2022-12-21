@@ -9,6 +9,7 @@ const Help = () => {
         <Home />
         <div className="flex flex-col w-screen">
           <Header name="Help" />
+          
         </div>
       </div>
     </>
