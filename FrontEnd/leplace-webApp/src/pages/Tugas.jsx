@@ -10,12 +10,13 @@ const Tugas = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("http://localhost:8000/api/tugas")
       .then((res) => {
         return res.json();
       })
       .then((resp) => {
-        setTask(resp);
+        setTask(resp.data.data);
+        console.log("cik", resp.data.data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -40,8 +41,8 @@ const Tugas = () => {
                     <div className="w-10 h-full bg-[#FF1F5A]" />
                   </div>
                   <div className="card-body">
-                    <h2 className="card-title text-[#131313]">{post.title}</h2>
-                    <p className="text-base-100">{post.body}</p>
+                    <h2 className="card-title text-[#131313]">{post.judul}</h2>
+                    <p className="text-base-100">{post.deskripsi}</p>
                     <div className="card-actions justify-end">
                       {/* <Link to="/details"> */}
                       <button
