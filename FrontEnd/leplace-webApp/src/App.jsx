@@ -11,7 +11,6 @@ import Materi from "./pages/Materi";
 import Profile from "./pages/Profile";
 import Tugas from "./pages/Tugas";
 
-
 const App = () => {
   return (
     <div>
@@ -22,7 +21,7 @@ const App = () => {
         <Route path="/inputTugas" element={<InputTugas />} />
         <Route path="/materi" element={<Materi />} />
         <Route path="/inputMateri" element={<InputMateri />} />
-        <Route path="/details" element={<DetailsTugas />} />
+        <Route path="/details/:mhsId" element={<DetailsTugas />} />
         <Route path="/help" element={<Help />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
