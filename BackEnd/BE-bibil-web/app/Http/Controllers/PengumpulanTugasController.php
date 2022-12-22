@@ -54,12 +54,14 @@ class PengumpulanTugasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PengumpulanTugas  $pengumpulanTugas
+     * @param  id
      * @return \Illuminate\Http\Response
      */
-    public function show(PengumpulanTugas $pengumpulanTugas)
+    public function show($id)
     {
-        //
+        return response()->json([
+            'data' => PengumpulanTugas::findOrFail($id)
+        ]);
     }
 
     /**
