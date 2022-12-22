@@ -67,7 +67,7 @@ const DetailsTugas = () => {
                         and drop
                       </p>
                       <p class="text-xs text-gray-500 dark:text-gray-400">
-                        PDF, SVG, PNG, JPG or GIF (MAX. 800x400px)
+                        File yang diupload hanya bisa PDF
                       </p>
                     </div>
                     <input id="dropzone-file" type="file" class="hidden" />
