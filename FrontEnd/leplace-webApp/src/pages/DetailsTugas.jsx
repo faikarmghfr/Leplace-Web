@@ -13,7 +13,7 @@ const DetailsTugas = () => {
         return res.json();
       })
       .then((resp) => {
-        setData(resp.data.data);
+        setData(resp.data);
       })
       .catch((err) => {
         console.log(err.message);
