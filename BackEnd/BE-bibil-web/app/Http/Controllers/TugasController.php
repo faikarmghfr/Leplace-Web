@@ -83,15 +83,17 @@ class TugasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tugas  $tugas
+     * @param  id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tugas $tugas)
+    public function show($id)
     {
+
         return response()->json([
-            'data' => $tugas
+            'data' => Tugas::findOrFail($id)
         ]);
     }
+
 
     // /**
     //  * Show the form for editing the specified resource.

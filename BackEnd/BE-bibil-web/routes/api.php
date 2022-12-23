@@ -53,6 +53,7 @@ Route::Post('pengumpulanTugas', [PengumpulanTugasController::class, "store"]);
 //melihat data pengumpulan tugas
 Route::Get('pengumpulanTugas', [PengumpulanTugasController::class, "index"]);
 
+Route::Get('pengumpulanTugas/{id}', [PengumpulanTugasController::class, "show"]);
 //mengirimkan bahan ajar
 Route::Post('materi', [MateriController::class, "store"]);
 

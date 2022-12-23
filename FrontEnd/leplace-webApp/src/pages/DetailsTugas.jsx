@@ -8,12 +8,12 @@ const DetailsTugas = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts/" + mhsId)
+    fetch("http://localhost:8000/api/tugas/" + mhsId)
       .then((res) => {
         return res.json();
       })
       .then((resp) => {
-        setData(resp);
+        setData(resp.data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -31,14 +31,14 @@ const DetailsTugas = () => {
               <div class="w-auto p-6 bg-white border border-gray-200 rounded-lg shadow-md">
                 <a href="#">
                   <h5 class="mb-2 text-2xl font-bold tracking-tight text-[#131313]">
-                    {data.title}
+                    {data.judul}
                   </h5>
                 </a>
                 <p class="mb-1 mt-7 font-normal text-gray-900 dark:text-gray-900">
                   Nilai : 90
                 </p>
                 <p class="mb-3 font-normal text-gray-900 dark:text-gray-900">
-                  {data.body}
+                  {data.deskripsi}
                 </p>
 
                 <div class="flex items-center justify-center w-full">
@@ -67,7 +67,7 @@ const DetailsTugas = () => {
                         and drop
                       </p>
                       <p class="text-xs text-gray-500 dark:text-gray-400">
-                        PDF, SVG, PNG, JPG or GIF (MAX. 800x400px)
+                        File yang diupload hanya bisa PDF
                       </p>
                     </div>
                     <input id="dropzone-file" type="file" class="hidden" />
