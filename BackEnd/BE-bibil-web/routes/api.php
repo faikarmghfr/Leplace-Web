@@ -30,18 +30,20 @@ Route::apiResource('mahasiswa', MahasiswaController::class);
 Route::apiResource('materi', MateriController::class);
 Route::apiResource('tugas', TugasController::class);
 
+Route::Get('dosen/{id}', [DosenController::class, "show"]);
 
+Route::Get('dosen', [DosenController::class, "index"]);
 
 //untuk registrasi mahasiswa
 Route::Post('mahasiswa', [MahasiswaController::class, "store"]);
 
-//untuk upload foto mahasiswa
+//untuk upload foto profil mahasiswa
 Route::Post('mahasiswa/upload_foto/{id}', [MahasiswaController::class, "upload_foto"]);
 
 //untuk registrasi dosen
 Route::Post('dosen', [DosenController::class, "store"]);
 
-//upload foto dosen
+//upload foto profil dosen
 Route::Post('dosen/upload_foto/{id}', [DosenController::class, "upload_foto"]);
 
 //login
@@ -53,7 +55,9 @@ Route::Post('pengumpulanTugas', [PengumpulanTugasController::class, "store"]);
 //melihat data pengumpulan tugas
 Route::Get('pengumpulanTugas', [PengumpulanTugasController::class, "index"]);
 
+//menampilkan pengumpulan tugas berdasarkan id
 Route::Get('pengumpulanTugas/{id}', [PengumpulanTugasController::class, "show"]);
+
 //mengirimkan bahan ajar
 Route::Post('materi', [MateriController::class, "store"]);
 
