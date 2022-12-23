@@ -67,18 +67,10 @@ class MahasiswaController extends Controller
         ]);
 
         $mahasiswa = Mahasiswa::find($id);
-        //error_log('hei');
-        //check if image is uploaded
         if ($request->hasFile('foto')) {
-            //error_log('Masuk sini');
-            //upload new image
-            // $foto = $request->file('foto');
-            // $fotoHash = $foto->store('public/assets/img');
             $foto = $request->foto;
             $name = $foto->getClientOriginalName();
             $foto->storeAs('assets/img', $name, 'public');
-            //error_log($fotoHash);
-            //delete old image
             Storage::delete('public/assets/img' . $mahasiswa->foto);
 
             //update post with new image

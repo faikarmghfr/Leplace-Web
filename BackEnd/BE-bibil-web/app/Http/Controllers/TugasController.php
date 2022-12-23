@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PengumpulanTugas;
 use App\Models\Tugas;
+use Dotenv\Store\File\Paths;
+use Faker\Core\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
 class TugasController extends Controller
@@ -93,6 +97,21 @@ class TugasController extends Controller
             'data' => Tugas::findOrFail($id)
         ]);
     }
+
+    // public function download(Request $request)
+    // {
+    //     if (Storage::disk('public')->exists("/assets/tugas $request->file")) {
+    //         //error_log("hei");
+    //         $path = Storage::disk('public')->path("/assets/tugas $request->file");
+    //         //error_log("hei");
+    //         $content = file_get_contents($path);
+    //         error_log("hei");
+    //         return response($content)->withHeaders([
+    //             'Content-Type' => mime_content_type($path)
+    //         ]);
+    //     }
+    //     return redirect('/404');
+    // }
 
 
     // /**

@@ -51,6 +51,18 @@ class PengumpulanTugasController extends Controller
         ]);
     }
 
+    public function nilai(Request $request, PengumpulanTugas $pengumpulanTugas, $id)
+    {
+        $pengumpulanTugas = PengumpulanTugas::find($id);
+        $nilai = $request->nilai;
+        $pengumpulanTugas->update([
+            'nilai' => $nilai
+        ]);
+        return response()->json([
+            'data' => $pengumpulanTugas
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -70,10 +82,15 @@ class PengumpulanTugasController extends Controller
      * @param  \App\Models\PengumpulanTugas  $pengumpulanTugas
      * @return \Illuminate\Http\Response
      */
-    public function edit(PengumpulanTugas $pengumpulanTugas)
-    {
-        //
-    }
+    // public function edit(PengumpulanTugas $pengumpulanTugas, Request $request)
+    // {
+    //     $pengumpulanTugas = PengumpulanTugas::create([
+    //         "nilai" => $request->nilai
+    //     ]);
+    //     return response()->json([
+    //         "data" => $pengumpulanTugas
+    //     ]);
+    // }
 
     /**
      * Update the specified resource in storage.
