@@ -12,8 +12,8 @@ const Materi = () => {
         return res.json();
       })
       .then((resp) => {
-        setTask(resp.data.data);
-        console.log("cik", resp.data.data);
+        setTask(resp.data);
+        console.log("cik", resp.data);
       })
       .catch((err) => {
         console.log(err.message);

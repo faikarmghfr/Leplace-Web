@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../App";
 
 const Header = (props) => {
+  const Context = useContext(UserContext);
+  const navigate = useNavigate();
+  console.log(Context.user);
   return (
     <>
       <div className="pl-10 pr-10 pt-7">
@@ -13,10 +18,21 @@ const Header = (props) => {
                 src="/images/fai.png"
                 alt="user photo"
               />
-              <div className="block ml-4 text-white text-sm">
-                <div className="font-light text-sm">Faikar Mochammad Ghifari</div>
-                <div className="font-extralight text-xs">201511008</div>
-              </div>
+              {Context.user ? (
+                <div className="block ml-4 text-white text-sm">
+                  <div className="font-light text-sm">
+                    {Context.user.nama}
+                  </div>
+                  <div className="font-extralight text-xs">{Context.user.NIM}</div>
+                </div>
+              ) : (
+                <div className="block ml-4 text-white text-sm">
+                  <div className="font-light text-sm">
+                    Dummy Name
+                  </div>
+                  <div className="font-extralight text-xs">Dummy NIM</div>
+                </div>
+              )}
             </div>
           </div>
         </nav>

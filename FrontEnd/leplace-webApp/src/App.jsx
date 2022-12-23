@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useState, createContext } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Dashboard from "./pages/Dashboard";
@@ -11,12 +11,13 @@ import Materi from "./pages/Materi";
 import Profile from "./pages/Profile";
 import Tugas from "./pages/Tugas";
 
+export const UserContext = createContext(null);
 const App = () => {
-
+  const [user, setUser] = useState();
   return (
-    <div>
+    <UserContext.Provider value={{ user, setUser }}>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route exact path="/" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/tugas" element={<Tugas />} />
         <Route path="/inputTugas" element={<InputTugas />} />
@@ -27,7 +28,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-    </div>
+    </UserContext.Provider>
   );
 };
 

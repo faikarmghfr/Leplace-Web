@@ -1,24 +1,47 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { UserContext } from "../App";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
-    const userRef = useRef();
-    const errRef = useRef();
+  const Context = useContext(UserContext);
+  let navigate = useNavigate();
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    let emailInput = e.target.email.value;
+    let passwordInput = e.target.password.value;
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [err, setErr] = useState("");
-    const [user, setUser] = useState("");
+    // fetching  post login using axios
+    let checkLogin = await axios
+      .post("http://localhost:8000/api/login", {
+        email: emailInput,
+        password: passwordInput,
+      })
+      .then((res) => {
+        return res.data;
+      });
+    console.log(checkLogin.message);
 
-    const [token, setToken] = useState();
-    if (!token) {
-        return <Login setToken={setToken} />;
+    if (checkLogin.message === "Login Gagal") {
+      Swal.fire({
+        icon: "error",
+        title: "Login Gagal",
+        text: "Email atau Password salah!",
+      });
+    } else {
+      Swal.fire("Login Berhasil", "Selamat Datang di Leplace", "success");
+      Context.setUser(checkLogin.data);
+
+      navigate("/");
     }
+  };
 
   return (
     <>
       <div className="min-h-screen flex items-center justify-center bg-emerald-800">
         <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8">
-          <form class="space-y-6" action="#">
+          <form class="space-y-6" onSubmit={loginHandler}>
             <h5 class="text-2xl font-bold text-emerald-500">
               Sign in to Leplace
             </h5>
@@ -33,6 +56,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 id="email"
+                htmlFor="email"
                 autoComplete="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 "
                 placeholder="name@company.com"
@@ -50,6 +74,7 @@ const Login = () => {
                 type="password"
                 name="password"
                 id="password"
+                htmlFor="password"
                 placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 "
                 required
