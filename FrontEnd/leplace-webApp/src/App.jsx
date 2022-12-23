@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
@@ -12,6 +12,10 @@ import Profile from "./pages/Profile";
 import Tugas from "./pages/Tugas";
 
 const App = () => {
+  const [token, setToken] = useState();
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
   return (
     <div>
       <Routes>

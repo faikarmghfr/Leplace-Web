@@ -1,7 +1,19 @@
-import React from "react";
-
+import React, { useEffect, useRef, useState } from "react";
 
 const Login = () => {
+    const userRef = useRef();
+    const errRef = useRef();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [err, setErr] = useState("");
+    const [user, setUser] = useState("");
+
+    const [token, setToken] = useState();
+    if (!token) {
+        return <Login setToken={setToken} />;
+    }
+
   return (
     <>
       <div className="min-h-screen flex items-center justify-center bg-emerald-800">
@@ -21,6 +33,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 id="email"
+                autoComplete="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 "
                 placeholder="name@company.com"
                 required
