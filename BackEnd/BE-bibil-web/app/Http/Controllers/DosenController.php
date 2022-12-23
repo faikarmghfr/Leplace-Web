@@ -12,26 +12,16 @@ class DosenController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param \App\Models\Dosen $dosen
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Dosen $dosen)
     {
-        $dosen = Dosen::paginate(5);
+        $dosen = Dosen::all();
         return response()->json([
             'data' => $dosen
         ]);
     }
-
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -78,21 +68,11 @@ class DosenController extends Controller
         ]);
 
         $dosen = Dosen::find($id);
-        //error_log('hei');
-        //check if image is uploaded
         if ($request->hasFile('foto')) {
-            //error_log('Masuk sini');
-            //upload new image
-            // $foto = $request->file('foto');
-            // $fotoHash = $foto->store('public/assets/img');
             $foto = $request->foto;
             $name = $foto->getClientOriginalName();
             $foto->storeAs('assets/img', $name, 'public');
-            //error_log($fotoHash);
-            //delete old image
             Storage::delete('public/assets/img' . $dosen->foto);
-
-            //update post with new image
             $dosen->update([
                 'foto'     => $name,
             ]);
@@ -114,17 +94,6 @@ class DosenController extends Controller
             'data' => $dosen
         ]);
     }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\Dosen  $dosen
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Dosen $dosen)
-    // {
-    //     //
-    // }
 
     /**
      * Update the specified resource in storage.

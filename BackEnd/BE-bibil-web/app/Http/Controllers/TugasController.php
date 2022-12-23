@@ -15,7 +15,7 @@ class TugasController extends Controller
      */
     public function index()
     {
-        $tugas = Tugas::paginate(5);
+        $tugas = Tugas::all();
         return response()->json([
             'data' => $tugas
         ]);

@@ -14,7 +14,7 @@ class MateriController extends Controller
      */
     public function index()
     {
-        $materi = Materi::paginate(5);
+        $materi = Materi::all();
         return response()->json([
             'data' => $materi
         ]);

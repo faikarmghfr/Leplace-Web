@@ -17,7 +17,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswa = Mahasiswa::paginate(5);
+        $mahasiswa = Mahasiswa::all();
         return response()->json([
             'data' => $mahasiswa
         ]);

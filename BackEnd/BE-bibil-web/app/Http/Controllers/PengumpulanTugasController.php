@@ -14,7 +14,7 @@ class PengumpulanTugasController extends Controller
      */
     public function index()
     {
-        $pengumpulanTugas = PengumpulanTugas::paginate(10);
+        $pengumpulanTugas = PengumpulanTugas::all();
         return response()->json([
             'data' => $pengumpulanTugas
         ]);
