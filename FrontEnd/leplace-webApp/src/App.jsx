@@ -12,10 +12,7 @@ import Profile from "./pages/Profile";
 import Tugas from "./pages/Tugas";
 
 const App = () => {
-  const [token, setToken] = useState();
-  if (!token) {
-    return <Login setToken={setToken} />;
-  }
+
   return (
     <div>
       <Routes>
