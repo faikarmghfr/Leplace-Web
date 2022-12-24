@@ -110,8 +110,14 @@ class PengumpulanTugasController extends Controller
      * @param  \App\Models\PengumpulanTugas  $pengumpulanTugas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PengumpulanTugas $pengumpulanTugas)
+    public function destroy(PengumpulanTugas $pengumpulanTugas, $id)
     {
-        //
+        $pengumpulanTugas = PengumpulanTugas::FindOrFail($id);
+        $pengumpulanTugas->delete($id);
+        return ["Tugas Anda Telah Dihapus"];
+
+        return response()->json([
+            'data' => $pengumpulanTugas
+        ]);
     }
 }

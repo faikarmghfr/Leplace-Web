@@ -62,18 +62,9 @@ class TugasController extends Controller
     //     $this->validate($request, [
     //         'file_tugas'     => 'mimes:pdf, docx, pptx, xlsx'
     //     ]);
-    //     //error_log('hei');
-    //     //check if image is uploaded
     //     if ($request->hasFile('file_tugas')) {
-    //         //error_log('Masuk sini');
-    //         //upload new image
     //         $file_tugas = $request->file('file_tugas');
     //         $tugasHash = $file_tugas->storeAs('public/assets/tugas');
-    //         //error_log($fotoHash);
-    //         //delete old image
-    //         Storage::delete('public/assets/tugas' . $tugas->file_tugas);
-
-    //         //update post with new image
     //         $tugas->update([
     //             'file_tugas'     => $tugasHash,
     //         ]);
@@ -150,11 +141,14 @@ class TugasController extends Controller
      * @param  \App\Models\Tugas  $tugas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tugas $tugas)
+    public function destroy(Tugas $tugas, $id)
     {
-        $tugas->delete();
+        $tugas = Tugas::FindOrFail($id);
+        $tugas->delete($id);
+        return ["Tugas Berhasil Dihapus"];
+
         return response()->json([
-            'message' => 'Tugas Telah Dihapus'
-        ], 204);
+            'data' => $tugas
+        ]);
     }
 }
