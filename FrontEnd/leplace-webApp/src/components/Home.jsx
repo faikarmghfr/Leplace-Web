@@ -12,33 +12,19 @@ import {
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  // let menus;
+  let menus;
   const dataUser = JSON.parse(sessionStorage.getItem("user"));
-  // if (dataUser.hasOwnProperty("NIM") === true){
-  //   menus = [
-  //     { name: "dashboard", link: "/", icon: MdOutlineDashboard },
-  //     { name: "materi", link: "/materi", icon: BsBook },
-  //     { name: "tugas", link: "/tugas", icon: BsClipboardCheck },
-  //     { name: "profile", link: "/profile", icon: AiOutlineUser },
-  //     { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
-  //     { name: "logout", link: "/login", icon: AiOutlineLogout },
-  //   ];
-  // }else {
-  //   menus = [
-  //     { name: "dashboard", link: "/", icon: MdOutlineDashboard },
-  //     {
-  //       name: "input materi",
-  //       link: "/inputMateri",
-  //       icon: BsFileEarmarkPlus,
-  //     },
-  //     { name: "input tugas", link: "/inputTugas", icon: BsClipboardPlus },
-  //     { name: "profile", link: "/profile", icon: AiOutlineUser },
-  //     { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
-  //     { name: "logout", link: "/login", icon: AiOutlineLogout },
-  //   ];
-  // }
-
-  let menus = [
+  if (dataUser.hasOwnProperty("NIM") === true){
+    menus = [
+      { name: "dashboard", link: "/", icon: MdOutlineDashboard },
+      { name: "materi", link: "/materi", icon: BsBook },
+      { name: "tugas", link: "/tugas", icon: BsClipboardCheck },
+      { name: "profile", link: "/profile", icon: AiOutlineUser },
+      { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
+      { name: "logout", link: "/login", icon: AiOutlineLogout },
+    ];
+  }else {
+    menus = [
       { name: "dashboard", link: "/", icon: MdOutlineDashboard },
       {
         name: "input materi",
@@ -49,8 +35,8 @@ const Home = () => {
       { name: "profile", link: "/profile", icon: AiOutlineUser },
       { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
       { name: "logout", link: "/login", icon: AiOutlineLogout },
-    ]
-  
+    ];
+  }
 
   const [open, setOpen] = useState(true);
   return (
