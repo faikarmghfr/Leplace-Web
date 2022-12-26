@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Materi;
+use Error;
 use Illuminate\Http\Request;
 
 class MateriController extends Controller
@@ -105,8 +106,10 @@ class MateriController extends Controller
     public function destroy(Materi $materi)
     {
         $materi->delete();
+        return ["Materi Telah Dihapus"];
+
         return response()->json([
-            'message' => 'Materi Telah Dihapus'
-        ], 204);
+            'data' => $materi
+        ]);
     }
 }

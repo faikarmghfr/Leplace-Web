@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PengumpulanTugas;
 use App\Models\Tugas;
+use Dotenv\Store\File\Paths;
+use Faker\Core\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
 class TugasController extends Controller
@@ -58,18 +62,9 @@ class TugasController extends Controller
     //     $this->validate($request, [
     //         'file_tugas'     => 'mimes:pdf, docx, pptx, xlsx'
     //     ]);
-    //     //error_log('hei');
-    //     //check if image is uploaded
     //     if ($request->hasFile('file_tugas')) {
-    //         //error_log('Masuk sini');
-    //         //upload new image
     //         $file_tugas = $request->file('file_tugas');
     //         $tugasHash = $file_tugas->storeAs('public/assets/tugas');
-    //         //error_log($fotoHash);
-    //         //delete old image
-    //         Storage::delete('public/assets/tugas' . $tugas->file_tugas);
-
-    //         //update post with new image
     //         $tugas->update([
     //             'file_tugas'     => $tugasHash,
     //         ]);
@@ -93,6 +88,21 @@ class TugasController extends Controller
             'data' => Tugas::findOrFail($id)
         ]);
     }
+
+    // public function download(Request $request)
+    // {
+    //     if (Storage::disk('public')->exists("/assets/tugas $request->file")) {
+    //         //error_log("hei");
+    //         $path = Storage::disk('public')->path("/assets/tugas $request->file");
+    //         //error_log("hei");
+    //         $content = file_get_contents($path);
+    //         error_log("hei");
+    //         return response($content)->withHeaders([
+    //             'Content-Type' => mime_content_type($path)
+    //         ]);
+    //     }
+    //     return redirect('/404');
+    // }
 
 
     // /**
@@ -131,11 +141,14 @@ class TugasController extends Controller
      * @param  \App\Models\Tugas  $tugas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tugas $tugas)
+    public function destroy(Tugas $tugas, $id)
     {
-        $tugas->delete();
+        $tugas = Tugas::FindOrFail($id);
+        $tugas->delete($id);
+        return ["Tugas Berhasil Dihapus"];
+
         return response()->json([
-            'message' => 'Tugas Telah Dihapus'
-        ], 204);
+            'data' => $tugas
+        ]);
     }
 }

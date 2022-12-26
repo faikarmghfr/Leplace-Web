@@ -35,18 +35,22 @@ class LoginController extends Controller
 
         if ($user !== null) {
 
-            if (Hash::check($validated["password"], $user->password)) {
+            //if (Hash::check($validated["password"], $user->password)) {
+            $password = Hash::check($validated["password"], $user->password);
+            if ($password == true) {
                 return response()->json([
                     "message" => "Login Berhasil",
                     "data" => $user
                 ]);
+            } else {
+                return response()->json([
+                    "message" => "Password Salah",
+                ], Response::HTTP_NOT_ACCEPTABLE);
             }
         } else {
             return response()->json([
                 "message" => "Login Gagal",
-                "data" => $user,
-                "input" => $validated
-            ]);
+            ], Response::HTTP_NOT_ACCEPTABLE);
         }
     }
 }

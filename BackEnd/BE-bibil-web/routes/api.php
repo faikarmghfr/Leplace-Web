@@ -61,6 +61,20 @@ Route::Get('pengumpulanTugas/{id}', [PengumpulanTugasController::class, "show"])
 //mengirimkan bahan ajar
 Route::Post('materi', [MateriController::class, "store"]);
 
+Route::Get('download/{id}', [TugasController::class, "download"]);
+//Route::get('tugas/{id}', [TugasController::class, 'download']);
+
+//menambahkan nilai
+Route::Post('pengumpulanTugas/{id}', [PengumpulanTugasController::class, "nilai"]);
+
+//hapus tugas
+Route::delete('delete/{id}', [TugasController::class, "destroy"]);
+
+//hapus materi
+Route::delete('materi/{id}', [MateriController::class, "destroy"]);
+
+//hapus tugas oleh mahasiswa
+Route::delete('pengumpulanTugas/{id}', [PengumpulanTugasController::class, "destroy"]);
 //Route::Post('tugas/upload_tugas', [TugasController::class, "upload_tugas"]);
 //Route::Put('mahasiswa/update_data', [MahasiswaController::class, "update_data"]);
 //Route::Post('mahasiswa/upload_foto', [MahasiswaController::class, "update"]);
