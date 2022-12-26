@@ -3,6 +3,16 @@ import Home from "../components/Home";
 import Header from "../components/Header";
 
 const Profile = () => {
+  let name;
+  let identityNumber;
+  const dataUser = JSON.parse(sessionStorage.getItem("user"));
+  if (dataUser.hasOwnProperty("NIM") === true ){
+    name = dataUser.nama;
+    identityNumber = dataUser.NIM;
+  } else {
+    name = dataUser.nama;
+    identityNumber = dataUser.NIP;
+  }
   return (
     <>
       <div className="flex">
@@ -14,13 +24,13 @@ const Profile = () => {
               <div class="flex flex-col items-center pb-10">
                 <img
                   class="w-60 h-60 mb-3 rounded-full shadow-lg mt-10"
-                  src="/images/profile.jpg"
+                  src="/images/userPicture.png"
                   alt="Bonnie image"
                 />
                 <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-black mt-5">
-                  Faikar Moch Ghifari
+                  {name}
                 </h5>
-                <span class="text-sm text-black">201511008</span>
+                <span class="text-sm text-black">{identityNumber}</span>
                 <div class="flex mt-4 space-x-3 md:mt-6">
                   <a
                     href="#"

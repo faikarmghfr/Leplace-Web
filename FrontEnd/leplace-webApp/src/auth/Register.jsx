@@ -40,7 +40,7 @@ const Register = () => {
           title: "Register Gagal",
           text: "Cek Kembali Form Input",
         });
-      } else {
+      } else if (checkRegister.message === "Registrasi Berhasil") {
         Swal.fire("Register Berhasil", "Silahkan Melakukan Login", "success");
         navigate("/login");
       }
@@ -70,7 +70,7 @@ const Register = () => {
           title: "Register Gagal",
           text: "Cek Kembali Form Input",
         });
-      } else {
+      } else if (checkRegister.message === "Registrasi Berhasil") {
         Swal.fire("Register Berhasil", "Silahkan Melakukan Login", "success");
         navigate("/login");
       }
@@ -258,7 +258,7 @@ const Register = () => {
               type="submit"
               class="w-full text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
-              Login to your account
+              Register your Account
             </button>
             <div class="text-sm font-medium text-gray-500">
               Already have an Account?{" "}

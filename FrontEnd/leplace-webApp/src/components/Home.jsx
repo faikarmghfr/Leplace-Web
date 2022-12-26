@@ -12,20 +12,45 @@ import {
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const menus = [
-    { name: "dashboard", link: "/", icon: MdOutlineDashboard },
-    { name: "materi", link: "/materi", icon: BsBook },
-    {
-      name: "input materi",
-      link: "/inputMateri",
-      icon: BsFileEarmarkPlus,
-    },
-    { name: "tugas", link: "/tugas", icon: BsClipboardCheck },
-    { name: "input tugas", link: "/inputTugas", icon: BsClipboardPlus },
-    { name: "profile", link: "/profile", icon: AiOutlineUser },
-    { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
-    { name: "logout", link: "/", icon: AiOutlineLogout },
-  ];
+  // let menus;
+  const dataUser = JSON.parse(sessionStorage.getItem("user"));
+  // if (dataUser.hasOwnProperty("NIM") === true){
+  //   menus = [
+  //     { name: "dashboard", link: "/", icon: MdOutlineDashboard },
+  //     { name: "materi", link: "/materi", icon: BsBook },
+  //     { name: "tugas", link: "/tugas", icon: BsClipboardCheck },
+  //     { name: "profile", link: "/profile", icon: AiOutlineUser },
+  //     { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
+  //     { name: "logout", link: "/login", icon: AiOutlineLogout },
+  //   ];
+  // }else {
+  //   menus = [
+  //     { name: "dashboard", link: "/", icon: MdOutlineDashboard },
+  //     {
+  //       name: "input materi",
+  //       link: "/inputMateri",
+  //       icon: BsFileEarmarkPlus,
+  //     },
+  //     { name: "input tugas", link: "/inputTugas", icon: BsClipboardPlus },
+  //     { name: "profile", link: "/profile", icon: AiOutlineUser },
+  //     { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
+  //     { name: "logout", link: "/login", icon: AiOutlineLogout },
+  //   ];
+  // }
+
+  let menus = [
+      { name: "dashboard", link: "/", icon: MdOutlineDashboard },
+      {
+        name: "input materi",
+        link: "/inputMateri",
+        icon: BsFileEarmarkPlus,
+      },
+      { name: "input tugas", link: "/inputTugas", icon: BsClipboardPlus },
+      { name: "profile", link: "/profile", icon: AiOutlineUser },
+      { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
+      { name: "logout", link: "/login", icon: AiOutlineLogout },
+    ]
+  
 
   const [open, setOpen] = useState(true);
   return (
@@ -48,7 +73,7 @@ const Home = () => {
               to={menu?.link}
               key={i}
               className={` ${
-                menu?.margin && "mt-5"
+                menu?.margin && "mt-5 "
               } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-green-600 rounded-md`}
             >
               <div>{React.createElement(menu?.icon, { size: "20" })}</div>
