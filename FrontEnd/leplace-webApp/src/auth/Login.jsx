@@ -10,6 +10,7 @@ const Login = () => {
   //remove session storage
   useEffect(() => {
     sessionStorage.removeItem("user");
+    sessionStorage.removeItem("isLogin");
   }, []);
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -35,10 +36,10 @@ const Login = () => {
       });
     } else if (checkLogin.message === "Login Berhasil"){
       Swal.fire("Login Berhasil", "Selamat Datang di Leplace", "success");
-      sessionStorage.setItem("user", JSON.stringify(checkLogin.data));
       isLoggedIn.setUser(true);
+      sessionStorage.setItem("isLogin", JSON.stringify(isLoggedIn));
+      sessionStorage.setItem("user", JSON.stringify(checkLogin.data));
       navigate("/");
-
     } else{
       Swal.fire({
         icon: "error",

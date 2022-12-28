@@ -25,13 +25,15 @@ const Header = (props) => {
                   </div>
                   <div className="font-extralight text-xs">
                     {/* {Context.user.NIM} */}
-                    {dataUser.NIM}
+                    {dataUser.NIM} (mahasiswa)
                   </div>
                 </div>
               ) : (
                 <div className="block ml-4 text-white text-sm">
                   <div className="font-light text-sm">{dataUser.nama}</div>
-                  <div className="font-extralight text-xs">{dataUser.NIP}</div>
+                  <div className="font-extralight text-xs">
+                    {dataUser.NIP} (dosen)
+                  </div>
                 </div>
               )}
             </div>

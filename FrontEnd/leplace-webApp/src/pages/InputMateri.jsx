@@ -1,8 +1,49 @@
 import React, { useEffect, useState } from "react";
 import Home from "../components/Home";
 import Header from "../components/Header";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const InputMateri = () => {
+  const [minggu, setMinggu] = useState();
+  const [mataKuliah, setMataKuliah] = useState();
+  const [deskripsi, setDeskripsi] = useState();
+  const [file, setFile] = useState(null);
+  const formData = {
+    minggu_ke: minggu,
+    deskripsi: deskripsi,
+    judul: mataKuliah,
+    file_materi: file,
+  };
+  
+  useEffect(() => {
+    console.log("File has been set.");
+  }, [file]);
+
+  const uploadMateriHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const dataMateri = await axios.post(
+        "http://localhost:8000/api/materi", formData, config)
+        .then((res) => {
+        console.log(res);
+        Swal.fire("Input Materi Berhasil", "Materi berhasil ditambahkan", "success");
+        console.log(dataMateri);
+      });
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Input Materi Gagal",
+        text: "Ada keluhan pada server atau form input",
+      });
+    }
+  };
   return (
     <>
       <div className="flex">
@@ -11,17 +52,19 @@ const InputMateri = () => {
           <Header name="Input Materi" />
           <div className="gap-4 pl-10 pr-10 pt-10">
             <div class="block w-full rounded-lg border border-gray-200 bg-white p-6 shadow-md">
-              <form>
+              <form onSubmit={uploadMateriHandler}>
                 <div class="mb-6">
                   <label
-                    for="minggu_ke"
+                    for="minggu"
                     class="block mb-2 text-sm font-medium text-gray-900"
                   >
                     Materi Minggu ke-
                   </label>
                   <input
                     type="number"
-                    id="minggu-ke"
+                    id="minggu"
+                    value={minggu}
+                    onChange={(e) => setMinggu(e.target.value)}
                     class="appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/6 p-2.5 "
                     placeholder="(1-16)"
                     min="1"
@@ -39,6 +82,8 @@ const InputMateri = () => {
                   <input
                     type="text"
                     id="mata_kuliah"
+                    value={mataKuliah}
+                    onChange={(e) => setMataKuliah(e.target.value)}
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/6 p-2.5 "
                     placeholder="Masukan Mata Kuliah"
                     required
@@ -54,59 +99,35 @@ const InputMateri = () => {
                   <textarea
                     type="deskripsi"
                     id="deskripsi"
+                    value={deskripsi}
+                    onChange={(e) => setDeskripsi(e.target.value)}
                     rows="3"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 "
                     placeholder="Masukkan Deskripsi atau keterangan"
                     required
                   />
                 </div>
-                
 
                 <div className="mt-5 flex flex-col justify-start gap-3">
                   <label
-                    for="deadline"
-                    class="block mb-2 text-sm font-medium text-gray-900"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    for="file_input"
                   >
-                    Input File
+                    Upload file
                   </label>
-                  <div class="flex w-full items-center justify-center">
-                    <label
-                      for="dropzone-file"
-                      class=" flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
-                    >
-                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                        <svg
-                          aria-hidden="true"
-                          class="mb-3 h-10 w-10 text-gray-400"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                          ></path>
-                        </svg>
-                        <p class="mb-2 text-sm text-gray-500">
-                          <span class="font-semibold">Click to upload</span> or
-                          drag and drop
-                        </p>
-                        <p class="text-xs text-gray-500 ">
-                          PDF, SVG, PNG, JPG or GIF (MAX. 800x400px)
-                        </p>
-                      </div>
-                      <input id="dropzone-file" type="file" class="hidden" />
-                    </label>
-                  </div>
+                  <input
+                    class="block w-1/2 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
+                    id="file_input"
+                    type="file"
+                    onChange={(e) => setFile(e.target.files[0])}
+                  />
+
                   <div className="flex justify-center">
                     <button
                       type="submit"
-                      className="btn btn-primary btn-sm mt-3 w-40 text-white"
+                      className="btn bg-emerald-600 hover:bg-emerald-700 border-transparent hover:border-transparent btn-xl mt-3 w-40 text-white "
                     >
-                      Add Submission
+                      Upluad Materi
                     </button>
                   </div>
                 </div>

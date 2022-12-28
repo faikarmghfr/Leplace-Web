@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import Register from "./auth/Register";
