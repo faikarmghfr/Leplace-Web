@@ -53,6 +53,7 @@ const Home = () => {
             onClick={() => setOpen(!open)}
           />
         </div>
+        <img src="/images/leplaceIcon2.png" className="w-9/12 mx-auto"/>
         <div className="mt-4 flex flex-col gap-4 relative">
           {menus?.map((menu, i) => (
             <Link

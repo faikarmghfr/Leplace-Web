@@ -3,6 +3,7 @@ import Home from "../components/Home";
 import Header from "../components/Header";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const InputMateri = () => {
   const [minggu, setMinggu] = useState();
@@ -15,6 +16,7 @@ const InputMateri = () => {
     judul: mataKuliah,
     file_materi: file,
   };
+  const navigate = useNavigate();
   
   useEffect(() => {
     console.log("File has been set.");
@@ -33,7 +35,8 @@ const InputMateri = () => {
         .then((res) => {
         console.log(res);
         Swal.fire("Input Materi Berhasil", "Materi berhasil ditambahkan", "success");
-        console.log(dataMateri);
+        // console.log(dataMateri);
+        navigate("/");
       });
     } catch (error) {
       console.log(error);
@@ -127,7 +130,7 @@ const InputMateri = () => {
                       type="submit"
                       className="btn bg-emerald-600 hover:bg-emerald-700 border-transparent hover:border-transparent btn-xl mt-3 w-40 text-white "
                     >
-                      Upluad Materi
+                      Upload Materi
                     </button>
                   </div>
                 </div>

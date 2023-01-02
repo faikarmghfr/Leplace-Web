@@ -3,11 +3,13 @@ import Home from "../components/Home";
 import Header from "../components/Header";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const InputTugas = () => {
   const [judul, setJudul] = useState();
   const [deskripsi, setDeskripsi] = useState();;
   const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
   const formData = {
     judul: judul,
@@ -37,6 +39,7 @@ const InputTugas = () => {
             "Tugas berhasil ditambahkan",
             "success"
           );
+          navigate("/");
         });
     } catch (error) {
       console.log(error);
@@ -53,7 +56,7 @@ const InputTugas = () => {
       <div className="flex">
         <Home />
         <div className="flex flex-col w-screen">
-          <Header name="Input Materi" />
+          <Header name="Input Tugas" />
           <div className="gap-4 pl-10 pr-10 pt-10">
             <div class="block w-full rounded-lg border border-gray-200 bg-white p-6 shadow-md">
               <form onSubmit={uploadTugasHandler}>
@@ -112,7 +115,7 @@ const InputTugas = () => {
                       type="submit"
                       className="btn bg-emerald-600 hover:bg-emerald-700 border-transparent hover:border-transparent  btn-xl mt-3 w-40 text-white"
                     >
-                      Upluad Tugas
+                      Upload Tugas
                     </button>
                   </div>
                 </div>
