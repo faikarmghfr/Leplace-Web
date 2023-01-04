@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../App";
 
 const Header = (props) => {
-  const Context = useContext(UserContext);
   const navigate = useNavigate();
-  console.log(Context.user);
+  const dataUser = JSON.parse(sessionStorage.getItem("user"));
+    // console.log(Context.user);
   return (
     <>
       <div className="pl-10 pr-10 pt-7">
@@ -15,22 +14,26 @@ const Header = (props) => {
             <div class="flex items-center md:order-2">
               <img
                 className="w-10 h-10 rounded-full"
-                src="/images/fai.png"
+                src="/images/userPicture.png"
                 alt="user photo"
               />
-              {Context.user ? (
+              {dataUser.hasOwnProperty("NIM") ? (
                 <div className="block ml-4 text-white text-sm">
                   <div className="font-light text-sm">
-                    {Context.user.nama}
+                    {/* {Context.user.nama} */}
+                    {dataUser.nama}
                   </div>
-                  <div className="font-extralight text-xs">{Context.user.NIM}</div>
+                  <div className="font-extralight text-xs">
+                    {/* {Context.user.NIM} */}
+                    {dataUser.NIM} (mahasiswa)
+                  </div>
                 </div>
               ) : (
                 <div className="block ml-4 text-white text-sm">
-                  <div className="font-light text-sm">
-                    Dummy Name
+                  <div className="font-light text-sm">{dataUser.nama}</div>
+                  <div className="font-extralight text-xs">
+                    {dataUser.NIP} (dosen)
                   </div>
-                  <div className="font-extralight text-xs">Dummy NIM</div>
                 </div>
               )}
             </div>

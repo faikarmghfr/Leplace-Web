@@ -5,14 +5,19 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const Context = useContext(UserContext);
+  const isLoggedIn = useContext(UserContext);
   let navigate = useNavigate();
+  //remove session storage
+  useEffect(() => {
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("isLogin");
+  }, []);
   const loginHandler = async (e) => {
     e.preventDefault();
     let emailInput = e.target.email.value;
     let passwordInput = e.target.password.value;
 
-    // fetching  post login using axios
+    // using axios
     let checkLogin = await axios
       .post("http://localhost:8000/api/login", {
         email: emailInput,
@@ -29,11 +34,18 @@ const Login = () => {
         title: "Login Gagal",
         text: "Email atau Password salah!",
       });
-    } else {
+    } else if (checkLogin.message === "Login Berhasil"){
       Swal.fire("Login Berhasil", "Selamat Datang di Leplace", "success");
-      Context.setUser(checkLogin.data);
-
+      isLoggedIn.setUser(true);
+      sessionStorage.setItem("isLogin", JSON.stringify(isLoggedIn));
+      sessionStorage.setItem("user", JSON.stringify(checkLogin.data));
       navigate("/");
+    } else{
+      Swal.fire({
+        icon: "error",
+        title: "Login Gagal",
+        text: "Email atau Password salah!",
+      });
     }
   };
 

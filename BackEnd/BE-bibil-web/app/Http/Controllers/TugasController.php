@@ -44,7 +44,11 @@ class TugasController extends Controller
      */
     public function store(Request $request, Tugas $tugas)
     {
-
+        $request->validate([
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'file_tugas' => 'required|mimes:pdf,docx,doc,pptx,ppt,zip,rar'
+        ]);
         $file_tugas = $request->file_tugas;
         $name = $file_tugas->getClientOriginalName();
         $file_tugas->storeAs('assets/tugas', $name, 'public');

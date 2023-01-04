@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Home from "../components/Home";
 import Header from "../components/Header";
+import Swal from "sweetalert2";
 
 const Materi = () => {
   const [task, setTask] = useState([]);
@@ -19,6 +20,15 @@ const Materi = () => {
         console.log(err.message);
       });
   }, []);
+
+  const downloadHandler = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      icon: "success",
+      title: "Download Materi Berhasil",
+      text: "Materi berhasil didownload",
+    });
+  };
 
   return (
     <>
@@ -39,7 +49,10 @@ const Materi = () => {
                     </h2>
                     <p className="text-base-100">{materi.deskripsi}</p>
                     <div className="card-actions justify-end">
-                      <button className="btn bg-[#0ba6ff] text-white btn-ghost hover:bg-[#0087d5]">
+                      <button
+                        className="btn bg-[#0ba6ff] text-white btn-ghost hover:bg-[#0087d5]"
+                        onClick={downloadHandler}
+                      >
                         Download
                       </button>
                     </div>

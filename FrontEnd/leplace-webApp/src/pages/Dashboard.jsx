@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Home from "../components/Home";
 import Header from "../components/Header";
 import { FaRegCheckCircle, FaBookOpen, FaChartBar } from "react-icons/fa";
 import { BsCashStack } from "react-icons/bs";
+import { UserContext } from "../App";
+
 
 const Dashboard = () => {
+  const isLoggedIn = useContext(UserContext);
+  console.log(isLoggedIn)
   return (
     <>
       <div className="flex">

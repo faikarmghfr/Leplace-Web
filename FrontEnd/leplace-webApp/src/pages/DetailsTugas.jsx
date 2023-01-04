@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Home from "../components/Home";
 import Header from "../components/Header";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const DetailsTugas = () => {
   const { mhsId } = useParams();
   const [data, setData] = useState({});
+  const [file, setFile] = useState(null);
+  const dataUser = JSON.parse(sessionStorage.getItem("user"));
+  const formData = {
+    tugas_id: mhsId,
+    mahasiswa_id: dataUser.id,
+    file_tugas: file,
+  };
+  const navigate = useNavigate();
+
+  console.log(mhsId);
+  console.log(dataUser.id);
+  console.log(file);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/tugas/" + mhsId)
@@ -19,6 +33,35 @@ const DetailsTugas = () => {
         console.log(err.message);
       });
   }, []);
+
+    const pengumpulanTugasHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const dataTugas = await axios
+        .post("http://localhost:8000/api/pengumpulanTugas", formData, config)
+        .then((res) => {
+          console.log(res);
+          Swal.fire(
+            "Pengumpulan Tugas Berhasil",
+            "Tugas berhasil dikumpulkan",
+            "success"
+          );
+          navigate("/tugas");
+        });
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Pengmupulan Tugas Gagal",
+        text: "Ada keluhan pada server atau form input",
+      });
+    }
+  };
 
   return (
     <>
@@ -34,53 +77,35 @@ const DetailsTugas = () => {
                     {data.judul}
                   </h5>
                 </a>
-                <p class="mb-1 mt-7 font-normal text-gray-900 dark:text-gray-900">
-                  Nilai : 90
-                </p>
-                <p class="mb-3 font-normal text-gray-900 dark:text-gray-900">
+                <p class="mt-3 mb-3 font-normal text-gray-900 dark:text-gray-900">
                   {data.deskripsi}
                 </p>
 
-                <div class="flex items-center justify-center w-full">
-                  <label
-                    for="dropzone-file"
-                    class="dark:hover:bg-bray-800 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-300 dark:bg-white dark:hover:border-gray-400 dark:hover:bg-gray-200"
-                  >
-                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                      <svg
-                        aria-hidden="true"
-                        class="mb-3 h-10 w-10 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                        ></path>
-                      </svg>
-                      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                        <span class="font-semibold">Click to upload</span> or drag
-                        and drop
-                      </p>
-                      <p class="text-xs text-gray-500 dark:text-gray-400">
-                        File yang diupload hanya bisa PDF
-                      </p>
-                    </div>
-                    <input id="dropzone-file" type="file" class="hidden" />
-                  </label>
-                </div>
-                <div className="flex justify-center">
-                  <button
-                    type="button"
-                    class="text-white w-1/6 mt-7 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm  py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    SUBMIT
-                  </button>
-                </div>
+                <form onSubmit={pengumpulanTugasHandler}>
+                  <div className="mt-5 flex flex-col justify-start gap-3">
+                    <label
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      for="file_input"
+                    >
+                      Upload file Tugas
+                    </label>
+                    <input
+                      class="block w-1/2 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
+                      id="file_input"
+                      type="file"
+                      onChange={(e) => setFile(e.target.files[0])}
+                    />
+                  </div>
+
+                  <div className="flex justify-center">
+                    <button
+                      type="submit"
+                      class="text-white w-1/6 mt-7 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm  py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      SUBMIT
+                    </button>
+                  </div>
+                </form>
               </div>
             )}
           </div>

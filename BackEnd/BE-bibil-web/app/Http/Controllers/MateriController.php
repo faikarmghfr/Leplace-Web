@@ -39,7 +39,13 @@ class MateriController extends Controller
      */
     public function store(Request $request, Materi $materi)
     {
-        $file_materi = $request->file_materi;
+        $request->validate([
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'minggu_ke' => 'required',
+            'file_materi' => 'required|mimes:pdf,docx,doc,pptx,ppt,zip,rar'
+        ]);
+        $file_materi = $request->file('file_materi');
         $name = $file_materi->getClientOriginalName();
         $file_materi->storeAs('assets/materi', $name, 'public');
         $materi = Materi::create([
