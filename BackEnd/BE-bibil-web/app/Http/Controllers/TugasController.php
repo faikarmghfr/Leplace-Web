@@ -9,6 +9,7 @@ use Faker\Core\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class TugasController extends Controller
 {
@@ -104,6 +105,11 @@ class TugasController extends Controller
     //     return redirect('/404');
     // }
 
+    // public function download(Tugas $file_tugas, $id)
+    // {
+    //     $file_tugas = Tugas::FindOrFail($id);
+    //     return response()->download($file_tugas->getPath(), $file_tugas->file_name);
+    // }
 
     // /**
     //  * Show the form for editing the specified resource.

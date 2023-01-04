@@ -10,28 +10,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterDosenController;
 use App\Http\Controllers\TugasController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::apiResource('dosen', DosenController::class);
 Route::apiResource('mahasiswa', MahasiswaController::class);
 Route::apiResource('materi', MateriController::class);
 Route::apiResource('tugas', TugasController::class);
 
+//Menampilkan data salah satu dosen
 Route::Get('dosen/{id}', [DosenController::class, "show"]);
 
+//Menampilkan data seluruh dosen
 Route::Get('dosen', [DosenController::class, "index"]);
 
 //untuk registrasi mahasiswa
@@ -61,8 +48,9 @@ Route::Get('pengumpulanTugas/{id}', [PengumpulanTugasController::class, "show"])
 //mengirimkan bahan ajar
 Route::Post('materi', [MateriController::class, "store"]);
 
-Route::Get('download/{id}', [TugasController::class, "download"]);
+//Route::Get('download/{id}', [TugasController::class, "download"]);
 //Route::get('tugas/{id}', [TugasController::class, 'download']);
+Route::Get('download/{id}', [TugasController::class, "download"]);
 
 //menambahkan nilai
 Route::Post('pengumpulanTugas/{id}', [PengumpulanTugasController::class, "nilai"]);
@@ -75,7 +63,6 @@ Route::delete('materi/{id}', [MateriController::class, "destroy"]);
 
 //hapus tugas oleh mahasiswa
 Route::delete('pengumpulanTugas/{id}', [PengumpulanTugasController::class, "destroy"]);
-//Route::Post('tugas/upload_tugas', [TugasController::class, "upload_tugas"]);
-//Route::Put('mahasiswa/update_data', [MahasiswaController::class, "update_data"]);
-//Route::Post('mahasiswa/upload_foto', [MahasiswaController::class, "update"]);
-//Route::Post('registerDosen', RegisterDosenController::class);
+
+//hapus dosen
+Route::delete('dosen/{id}', [DosenController::class, "destroy"]);
