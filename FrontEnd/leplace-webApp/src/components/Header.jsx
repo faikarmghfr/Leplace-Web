@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 const Header = (props) => {
   const navigate = useNavigate();
   const dataUser = JSON.parse(sessionStorage.getItem("user"));
-    // console.log(Context.user);
   return (
     <>
       <div className="pl-10 pr-10 pt-7">

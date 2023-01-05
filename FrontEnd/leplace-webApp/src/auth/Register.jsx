@@ -6,8 +6,6 @@ import Swal from "sweetalert2";
 
 const Register = () => {
   const [role, setRole] = useState("");
-  //register as dosen
-  console.log(role);
   let navigate = useNavigate();
   const registerHandler = async (e) => {
     e.preventDefault();
@@ -31,9 +29,6 @@ const Register = () => {
           return err.errors;
         });
 
-      console.log(checkRegister);
-
-      //error on kec
       if (checkRegister.message === "Gagal Registrasi") {
         Swal.fire({
           icon: "error",
@@ -62,8 +57,6 @@ const Register = () => {
         .catch((err) => {
           return err.errors;
         });
-      console.log(checkRegister);
-
       if (checkRegister.message === "Login Gagal") {
         Swal.fire({
           icon: "error",

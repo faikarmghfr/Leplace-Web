@@ -32,7 +32,7 @@ const Home = () => {
         icon: BsFileEarmarkPlus,
       },
       { name: "input tugas", link: "/inputTugas", icon: BsClipboardPlus },
-      { name: "tugas mahasiswa", link: "/tugasMhs", icon: BsClipboardPlus },
+      { name: "tugas mahasiswa", link: "/tugasMahasiswa", icon: BsClipboardPlus },
       { name: "profile", link: "/profile", icon: AiOutlineUser },
       { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
       { name: "logout", link: "/login", icon: AiOutlineLogout },

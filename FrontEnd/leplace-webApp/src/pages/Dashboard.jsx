@@ -5,10 +5,8 @@ import { FaRegCheckCircle, FaBookOpen, FaChartBar } from "react-icons/fa";
 import { BsCashStack } from "react-icons/bs";
 import { UserContext } from "../App";
 
-
 const Dashboard = () => {
   const isLoggedIn = useContext(UserContext);
-  console.log(isLoggedIn)
   return (
     <>
       <div className="flex">

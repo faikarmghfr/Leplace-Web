@@ -14,12 +14,12 @@ const Materi = () => {
       })
       .then((resp) => {
         setTask(resp.data);
-        // console.log("cik", resp.data);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, []);
+
 
   const downloadHandler = (e) => {
     e.preventDefault();

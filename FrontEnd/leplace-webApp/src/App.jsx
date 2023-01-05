@@ -12,7 +12,6 @@ import Materi from "./pages/Materi";
 import Profile from "./pages/Profile";
 import Tugas from "./pages/Tugas";
 import TugasMahasiswa from "./pages/TugasMahasiswa";
-import InputNilai from "./pages/InputNilai";
 
 export const UserContext = createContext(null);
 const App = () => {
@@ -27,8 +26,7 @@ const App = () => {
           <Route path="/inputTugas" element={<InputTugas />} />
           <Route path="/materi" element={<Materi />} />
           <Route path="/inputMateri" element={<InputMateri />} />
-          <Route path="/inputNilai/:mhsId" element={<InputNilai />} />
-          <Route path="/tugasMhs" element={<TugasMahasiswa />} />
+          <Route path="/tugasMahasiswa" element={<TugasMahasiswa />} />
           <Route path="/details/:mhsId" element={<DetailsTugas />} />
           <Route path="/help" element={<Help />} />
         </Route>

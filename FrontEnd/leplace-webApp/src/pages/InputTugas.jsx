@@ -16,7 +16,6 @@ const InputTugas = () => {
     deskripsi: deskripsi,
     file_tugas: file
   };
-  console.log(formData);
 
   useEffect(() => {
     console.log("File has been set.");

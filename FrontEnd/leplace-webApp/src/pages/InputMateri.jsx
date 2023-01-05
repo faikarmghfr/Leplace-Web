@@ -35,7 +35,6 @@ const InputMateri = () => {
         .then((res) => {
         console.log(res);
         Swal.fire("Input Materi Berhasil", "Materi berhasil ditambahkan", "success");
-        // console.log(dataMateri);
         navigate("/");
       });
     } catch (error) {

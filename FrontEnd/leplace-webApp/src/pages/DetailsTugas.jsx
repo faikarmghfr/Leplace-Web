@@ -17,10 +17,6 @@ const DetailsTugas = () => {
   };
   const navigate = useNavigate();
 
-  console.log(mhsId);
-  console.log(dataUser.id);
-  console.log(file);
-
   useEffect(() => {
     fetch("http://localhost:8000/api/tugas/" + mhsId)
       .then((res) => {
@@ -45,7 +41,6 @@ const DetailsTugas = () => {
       const dataTugas = await axios
         .post("http://localhost:8000/api/pengumpulanTugas", formData, config)
         .then((res) => {
-          console.log(res);
           Swal.fire(
             "Pengumpulan Tugas Berhasil",
             "Tugas berhasil dikumpulkan",
@@ -79,10 +74,6 @@ const DetailsTugas = () => {
                 </a>
                 <p class="mt-3 mb-3 font-normal text-gray-900 dark:text-gray-900">
                   {data.deskripsi}
-                </p>
-
-                <p className="mt-3 mb-3 font-normal text-gray-900 dark:text-gray-900">
-                  Nilai : {data.nilai ? data.nilai : "Belum Dinilai"}
                 </p>
 
                 <form onSubmit={pengumpulanTugasHandler}>

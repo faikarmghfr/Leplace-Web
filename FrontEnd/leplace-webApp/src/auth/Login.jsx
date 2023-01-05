@@ -7,17 +7,17 @@ import Swal from "sweetalert2";
 const Login = () => {
   const isLoggedIn = useContext(UserContext);
   let navigate = useNavigate();
+
   //remove session storage
   useEffect(() => {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("isLogin");
   }, []);
+  
   const loginHandler = async (e) => {
     e.preventDefault();
     let emailInput = e.target.email.value;
     let passwordInput = e.target.password.value;
-
-    // using axios
     let checkLogin = await axios
       .post("http://localhost:8000/api/login", {
         email: emailInput,
@@ -25,16 +25,16 @@ const Login = () => {
       })
       .then((res) => {
         return res.data;
+      })
+      .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Login Gagal",
+            text: "Email atau Password salah!",
+          });
       });
-    console.log(checkLogin.message);
 
-    if (checkLogin.message === "Login Gagal") {
-      Swal.fire({
-        icon: "error",
-        title: "Login Gagal",
-        text: "Email atau Password salah!",
-      });
-    } else if (checkLogin.message === "Login Berhasil"){
+    if (checkLogin.message === "Login Berhasil"){
       Swal.fire("Login Berhasil", "Selamat Datang di Leplace", "success");
       isLoggedIn.setUser(true);
       sessionStorage.setItem("isLogin", JSON.stringify(isLoggedIn));
