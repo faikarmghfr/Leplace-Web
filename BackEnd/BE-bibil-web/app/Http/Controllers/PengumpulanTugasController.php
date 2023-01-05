@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PengumpulanTugas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PengumpulanTugasController extends Controller
 {
@@ -20,15 +21,18 @@ class PengumpulanTugasController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    // public function join()
+    // {
+    //     $pengumpulanTugas = DB::table('pengumpulan_tugas')
+    //         ->join('mahasiswas', 'id', '=', 'mahasiswa_id')
+    //         ->join('tugas', 'id', '=', 'tugas_id')
+    //         ->select('pengumpulan_tugas.*', 'mahasiswas.nama', 'tugas.judul')
+    //         ->get();
+    //     //$pengumpulanTugas = PengumpulanTugas::all();
+    //     return response()->json([
+    //         'data' => $pengumpulanTugas
+    //     ]);
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -44,7 +48,7 @@ class PengumpulanTugasController extends Controller
         $pengumpulanTugas = PengumpulanTugas::create([
             "tugas_id" => $request->tugas_id,
             "mahasiswa_id" => $request->mahasiswa_id,
-            "kumpulan_tugas" => $name
+            "kumpulan_tugas" => $name,
         ]);
         return response()->json([
             'data' => $pengumpulanTugas
@@ -56,7 +60,7 @@ class PengumpulanTugasController extends Controller
         $pengumpulanTugas = PengumpulanTugas::find($id);
         $nilai = $request->nilai;
         $pengumpulanTugas->update([
-            'nilai' => $nilai
+            'nilai' => $nilai,
         ]);
         return response()->json([
             'data' => $pengumpulanTugas
@@ -74,34 +78,6 @@ class PengumpulanTugasController extends Controller
         return response()->json([
             'data' => PengumpulanTugas::findOrFail($id)
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\PengumpulanTugas  $pengumpulanTugas
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit(PengumpulanTugas $pengumpulanTugas, Request $request)
-    // {
-    //     $pengumpulanTugas = PengumpulanTugas::create([
-    //         "nilai" => $request->nilai
-    //     ]);
-    //     return response()->json([
-    //         "data" => $pengumpulanTugas
-    //     ]);
-    // }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PengumpulanTugas  $pengumpulanTugas
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, PengumpulanTugas $pengumpulanTugas)
-    {
-        //
     }
 
     /**

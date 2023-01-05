@@ -26,16 +26,6 @@ class TugasController extends Controller
         ]);
     }
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -61,24 +51,6 @@ class TugasController extends Controller
             'data' => $tugas
         ]);
     }
-
-    // public function upload_tugas(Request $request, Tugas $tugas)
-    // {
-    //     $this->validate($request, [
-    //         'file_tugas'     => 'mimes:pdf, docx, pptx, xlsx'
-    //     ]);
-    //     if ($request->hasFile('file_tugas')) {
-    //         $file_tugas = $request->file('file_tugas');
-    //         $tugasHash = $file_tugas->storeAs('public/assets/tugas');
-    //         $tugas->update([
-    //             'file_tugas'     => $tugasHash,
-    //         ]);
-    //     }
-    //     return response()->json([
-    //         'data' => $tugas
-    //     ]);
-    // }
-
 
     /**
      * Display the specified resource.
@@ -107,23 +79,6 @@ class TugasController extends Controller
     //         ]);
     //     }
     //     return redirect('/404');
-    // }
-
-    // public function download(Tugas $file_tugas, $id)
-    // {
-    //     $file_tugas = Tugas::FindOrFail($id);
-    //     return response()->download($file_tugas->getPath(), $file_tugas->file_name);
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\Tugas  $tugas
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Tugas $tugas)
-    // {
-    //     //
     // }
 
     /**

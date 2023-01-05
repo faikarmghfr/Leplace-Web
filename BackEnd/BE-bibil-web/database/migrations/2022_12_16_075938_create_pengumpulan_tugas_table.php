@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('tugas_id');
             $table->foreignId('mahasiswa_id');
             $table->string('kumpulan_tugas');
-            $table->integer('nilai');
+            $table->integer('nilai')->default(0);
             $table->timestamps();
         });
     }
