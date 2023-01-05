@@ -34,7 +34,7 @@ const DetailsTugas = () => {
       });
   }, []);
 
-    const pengumpulanTugasHandler = async (e) => {
+  const pengumpulanTugasHandler = async (e) => {
     e.preventDefault();
     try {
       const config = {
@@ -79,6 +79,10 @@ const DetailsTugas = () => {
                 </a>
                 <p class="mt-3 mb-3 font-normal text-gray-900 dark:text-gray-900">
                   {data.deskripsi}
+                </p>
+
+                <p className="mt-3 mb-3 font-normal text-gray-900 dark:text-gray-900">
+                  Nilai : {data.nilai ? data.nilai : "Belum Dinilai"}
                 </p>
 
                 <form onSubmit={pengumpulanTugasHandler}>

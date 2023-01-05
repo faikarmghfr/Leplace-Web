@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   let menus;
   const dataUser = JSON.parse(sessionStorage.getItem("user"));
-  if (dataUser.hasOwnProperty("NIM") === true){
+  if (dataUser.hasOwnProperty("NIM") === true) {
     menus = [
       { name: "dashboard", link: "/", icon: MdOutlineDashboard },
       { name: "materi", link: "/materi", icon: BsBook },
@@ -23,7 +23,7 @@ const Home = () => {
       { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
       { name: "logout", link: "/login", icon: AiOutlineLogout },
     ];
-  }else {
+  } else {
     menus = [
       { name: "dashboard", link: "/", icon: MdOutlineDashboard },
       {
@@ -32,6 +32,7 @@ const Home = () => {
         icon: BsFileEarmarkPlus,
       },
       { name: "input tugas", link: "/inputTugas", icon: BsClipboardPlus },
+      { name: "tugas mahasiswa", link: "/tugasMhs", icon: BsClipboardPlus },
       { name: "profile", link: "/profile", icon: AiOutlineUser },
       { name: "help", link: "/help", icon: FiHelpCircle, margin: true },
       { name: "logout", link: "/login", icon: AiOutlineLogout },
@@ -53,7 +54,7 @@ const Home = () => {
             onClick={() => setOpen(!open)}
           />
         </div>
-        <img src="/images/leplaceIcon2.png" className="w-9/12 mx-auto"/>
+        <img src="/images/leplaceIcon2.png" className="w-9/12 mx-auto" />
         <div className="mt-4 flex flex-col gap-4 relative">
           {menus?.map((menu, i) => (
             <Link
